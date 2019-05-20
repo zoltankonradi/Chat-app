@@ -6,6 +6,11 @@ window.onload = $(() => {
 
     $messageForm.submit((e) => {
         e.preventDefault();
-        console.log('submitted');
+        socket.emit('send message', $message.val());
+        $message.val('');
+    });
+
+    socket.on('new message', (data) => {
+        $chat.append(`<div class="well">${data.message}</div>`)
     })
 });

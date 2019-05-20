@@ -2,8 +2,8 @@
 
 <head>
   <title>Express</title>
-  <link rel="stylesheet" href="./stylesheets/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./stylesheets/style.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="./javascripts/index.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
@@ -11,7 +11,19 @@
 
 <body>
   <div class="container">
-    <div class="row">
+    <div id="userFormArea" class="row">
+      <div class="col-md-12">
+        <form id="userForm">
+          <div class="form-group">
+            <label>Enter Username</label>
+            <input class="form-control" id="username">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Login"/>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="messageArea" class="row">
       <div class="col-md-4">
         <div class="well">
           <h3>Online users</h3>
