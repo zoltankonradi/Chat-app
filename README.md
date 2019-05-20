@@ -1,5 +1,4 @@
-Pet project: Chat-app
-Created with Node js and Vue js.
+Pet project: Chat-app created with Node js and Vue js.
 
 Simple chat application.
 
