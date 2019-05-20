@@ -22,13 +22,26 @@ io.sockets.on('connection', (socket) => {
     console.log(`Number of sockets connected: ${connections.length}`);
     //Disconnect
     socket.on('disconnect', (data) => {
+        // if (!socket.username) return;
+        users.splice(users.indexOf(socket.username), 1);
+        updateUserNames();
         connections.splice(connections.indexOf(socket), 1);
         console.log('Socket disconnected.');
     });
     //Send message
     socket.on('send message', (data) => {
-        io.sockets.emit('new message', { message : data })
+        io.sockets.emit('new message', { message : data, user : socket.username })
     });
+    //New user
+    socket.on('new user', (data, callback) => {
+        callback(true);
+        socket.username = data;
+        users.push(socket.username);
+        updateUserNames();
+    });
+    function updateUserNames() {
+        io.sockets.emit('get users', users);
+    }
 });
 
 module.exports = app;
