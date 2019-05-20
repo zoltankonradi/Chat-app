@@ -9,7 +9,7 @@ connections = [];
 // server.listen(process.env.PORT || 8080);
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+server.listen(process.env.PORT || 8080);
 console.log('Server running...');
 
 app.get('/', (req, res, next) => {
@@ -21,8 +21,14 @@ io.sockets.on('connection', (socket) => {
     connections.push(socket);
     console.log(`Number of sockets connected: ${connections.length}`);
     //Disconnect
-    connections.splice(connections.indexOf(socket), 1);
-    console.log('Socket disconnected.');
+    socket.on('disconnect', (data) => {
+        connections.splice(connections.indexOf(socket), 1);
+        console.log('Socket disconnected.');
+    });
+    //Send message
+    socket.on('send message', (data) => {
+       io.sockets.emit('new message', { message : data })
+    });
 });
 
 module.exports = app;
