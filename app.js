@@ -9,12 +9,8 @@ connections = [];
 // server.listen(process.env.PORT || 8080);
 
 app.use(express.static(path.join(__dirname, 'public')));
-server.listen(process.env.PORT || 8080);
+server.listen(process.env.PORT || 8081);
 console.log('Server running...');
-
-app.get('/', (req, res, next) => {
-    res.render('index', { title: 'Express' });
-});
 
 //Connect
 io.sockets.on('connection', (socket) => {
